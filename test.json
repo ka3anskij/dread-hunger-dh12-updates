@@ -1,0 +1,22 @@
+{
+  "formatVersion": 1,
+  "channel": "test",
+  "version": "1.1.5",
+  "minimumLauncherVersion": "1.0.0",
+  "launchExe": "DreadHunger.exe",
+  "files": [
+    {
+      "path": "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.pak",
+      "url": "https://github.com/ka3anskij/dread-hunger-dh12-updates/releases/download/v1.1.5/ZZ_DH12_Fixes_p.pak",
+      "size": 158734,
+      "sha256": "591313BF7F10510E9AD3F016349BF47657B4C1553969286676BFB884210C41A3"
+    },
+    {
+      "path": "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.sig",
+      "url": "https://github.com/ka3anskij/dread-hunger-dh12-updates/releases/download/v1.1.5/ZZ_DH12_Fixes_p.sig",
+      "size": 1021940,
+      "sha256": "27143AFD8E72B2BF4AD0D14D892F6612B40D3F61B806092106CBB5906935E7BF"
+    }
+  ],
+  "removeFiles": []
+}
