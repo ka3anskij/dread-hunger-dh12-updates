@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "channel": "stable",
   "version": "1.1.6",
-  "minimumLauncherVersion": "1.1.0",
+  "minimumLauncherVersion": "1.1.1",
   "launchExe": "DreadHunger.exe",
   "files": [
     {
