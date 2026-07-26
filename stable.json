@@ -1,34 +1,37 @@
 {
   "formatVersion": 1,
   "channel": "stable",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "minimumLauncherVersion": "1.1.1",
   "launchExe": "DreadHunger.exe",
   "files": [
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.pak",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.6/ZZ_TotemMod_RU_p.pak",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_TotemMod_RU_p.pak",
       "size": 48838,
-      "sha256": "A62DD32B1BBCAEF3C91A22FC2BAE60047F75D43804283A40B240C26DF0CF0053"
+      "sha256": "ED58AD4E0B1B2D2DB6CFD5504C38F1163D43F2C65DAB5EF32BF2AAD9B5D072F1"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.sig",
-      "url": "https://github.com/ka3anskij/dread-hunger-dh12-updates/releases/download/v1.1.5/ZZ_DH12_Fixes_p.sig",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_TotemMod_RU_p.sig",
       "size": 1021940,
       "sha256": "27143AFD8E72B2BF4AD0D14D892F6612B40D3F61B806092106CBB5906935E7BF"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.pak",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.6/ZZ_DH12_Fixes_p.pak",
-      "size": 167220,
-      "sha256": "00989E9F12577477A488985FE88DB1166788BA289FB4706B2442D04CBDFA2E9A"
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_DH12_Fixes_p.pak",
+      "size": 195484,
+      "sha256": "0A97D4A79607444A894974AF5A08844075A7A6E4B92F6816E3AA9F16F32B3911"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.sig",
-      "url": "https://github.com/ka3anskij/dread-hunger-dh12-updates/releases/download/v1.1.5/ZZ_DH12_Fixes_p.sig",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_DH12_Fixes_p.sig",
       "size": 1021940,
       "sha256": "27143AFD8E72B2BF4AD0D14D892F6612B40D3F61B806092106CBB5906935E7BF"
     }
   ],
-  "removeFiles": []
+  "removeFiles": [
+    "DreadHunger/Content/Paks/cuimods/Te_Archipelago_Map_Client_p.pak",
+    "DreadHunger/Content/Paks/cuimods/Te_Archipelago_Map_Client_p.sig"
+  ]
 }
