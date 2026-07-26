@@ -1,0 +1,42 @@
+name: Announce Hideout update in Discord
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - stable.json
+      - release-notes/**
+      - assets/**/patchnote.png
+      - scripts/announce_discord.py
+      - scripts/release_changed.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    env:
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+    steps:
+      - name: Check out update feed
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect a new stable version
+        id: release
+        run: python scripts/release_changed.py
+
+      - name: Send patch notes and image
+        if: (steps.release.outputs.changed == 'true' || github.event_name == 'workflow_dispatch') && env.DISCORD_WEBHOOK_URL != ''
+        run: |
+          python scripts/announce_discord.py \
+            --version "${{ steps.release.outputs.version }}" \
+            --notes "release-notes/${{ steps.release.outputs.version }}.md" \
+            --image "assets/v${{ steps.release.outputs.version }}/patchnote.png"
+
+      - name: Explain missing Discord setup
+        if: (steps.release.outputs.changed == 'true' || github.event_name == 'workflow_dispatch') && env.DISCORD_WEBHOOK_URL == ''
+        run: echo "DISCORD_WEBHOOK_URL is not configured; announcement skipped."
