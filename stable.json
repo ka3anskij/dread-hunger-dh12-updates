@@ -1,31 +1,31 @@
 {
   "formatVersion": 1,
   "channel": "stable",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "minimumLauncherVersion": "1.1.1",
   "launchExe": "DreadHunger.exe",
   "files": [
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.pak",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_TotemMod_RU_p.pak",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8/ZZ_TotemMod_RU_p.pak",
       "size": 48838,
-      "sha256": "ED58AD4E0B1B2D2DB6CFD5504C38F1163D43F2C65DAB5EF32BF2AAD9B5D072F1"
+      "sha256": "727C7BF2C3FD6375575726379217274E9B47BDF0C3BFF9AAB8A8CFD08C2A308C"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.sig",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_TotemMod_RU_p.sig",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8/ZZ_TotemMod_RU_p.sig",
       "size": 1021940,
       "sha256": "27143AFD8E72B2BF4AD0D14D892F6612B40D3F61B806092106CBB5906935E7BF"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.pak",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_DH12_Fixes_p.pak",
-      "size": 195484,
-      "sha256": "0A97D4A79607444A894974AF5A08844075A7A6E4B92F6816E3AA9F16F32B3911"
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8/ZZ_DH12_Fixes_p.pak",
+      "size": 272325,
+      "sha256": "2BF96F72D9EA4172B2BA5466F9DDA5003AD1F1DF6E46F742D2E965314C0FC481"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.sig",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_DH12_Fixes_p.sig",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8/ZZ_DH12_Fixes_p.sig",
       "size": 1021940,
       "sha256": "27143AFD8E72B2BF4AD0D14D892F6612B40D3F61B806092106CBB5906935E7BF"
     }
