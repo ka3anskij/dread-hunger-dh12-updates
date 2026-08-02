@@ -1,36 +1,40 @@
 {
   "formatVersion": 1,
   "channel": "test",
-  "version": "1.1.7",
+  "version": "1.1.8-beta.4",
   "minimumLauncherVersion": "1.1.1",
   "launchExe": "DreadHunger.exe",
   "files": [
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.pak",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_TotemMod_RU_p.pak",
-      "size": 48838,
-      "sha256": "ED58AD4E0B1B2D2DB6CFD5504C38F1163D43F2C65DAB5EF32BF2AAD9B5D072F1"
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_TotemMod_RU_p.pak",
+      "size": 49304,
+      "sha256": "B988D7D0170C331B5101C9F5E34981B8CD38F8656171A365587337865C3B4FBA"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.sig",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_TotemMod_RU_p.sig",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_TotemMod_RU_p.sig",
       "size": 1021940,
       "sha256": "27143AFD8E72B2BF4AD0D14D892F6612B40D3F61B806092106CBB5906935E7BF"
     },
     {
-      "path": "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.pak",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_DH12_Fixes_p.pak",
-      "size": 195484,
-      "sha256": "0A97D4A79607444A894974AF5A08844075A7A6E4B92F6816E3AA9F16F32B3911"
+      "path": "DreadHunger/Content/Paks/cuimods/ZZ_Hideout_999_P.pak",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_Hideout_999_P.pak",
+      "size": 657363,
+      "sha256": "D382CC027160CC4922CE020D55097720961EF4F1978D6FCEF15FDF24785B8B04"
     },
     {
-      "path": "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.sig",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.7/ZZ_DH12_Fixes_p.sig",
+      "path": "DreadHunger/Content/Paks/cuimods/ZZ_Hideout_999_P.sig",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_Hideout_999_P.sig",
       "size": 1021940,
       "sha256": "27143AFD8E72B2BF4AD0D14D892F6612B40D3F61B806092106CBB5906935E7BF"
     }
   ],
   "removeFiles": [
+    "DreadHunger/Content/Paks/cuimods/Hideout_999_P.pak",
+    "DreadHunger/Content/Paks/cuimods/Hideout_999_P.sig",
+    "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.pak",
+    "DreadHunger/Content/Paks/cuimods/ZZ_DH12_Fixes_p.sig",
     "DreadHunger/Content/Paks/cuimods/Te_Archipelago_Map_Client_p.pak",
     "DreadHunger/Content/Paks/cuimods/Te_Archipelago_Map_Client_p.sig"
   ]
