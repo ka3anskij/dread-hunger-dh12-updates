@@ -6,6 +6,12 @@
   "launchExe": "DreadHunger.exe",
   "files": [
     {
+      "path": "DreadHunger/Binaries/Win64/Patches/block_freetp_browser.js",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/block_freetp_browser.js",
+      "size": 1689,
+      "sha256": "FE6F6949C56F707D86ACB88212A47F32BD82910F396786879359D990C0F9804E"
+    },
+    {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.pak",
       "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_TotemMod_RU_p.pak",
       "size": 49304,
