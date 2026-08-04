@@ -8,8 +8,38 @@
     {
       "path": "DreadHunger/Binaries/Win64/Patches/block_freetp_browser.js",
       "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/block_freetp_browser.js",
-      "size": 1689,
-      "sha256": "FE6F6949C56F707D86ACB88212A47F32BD82910F396786879359D990C0F9804E"
+      "size": 7495,
+      "sha256": "5B3233D8417F33F748951DC4298066F01715CB4E1EF4611FD5B4F04BDE4BE3B2"
+    },
+    {
+      "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/HideoutCleanUpdate.exe",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/HideoutCleanUpdate.exe",
+      "size": 18944,
+      "sha256": "668D012153C712A42DE410EC0E2F1B7BB4228ACD1EB64CDA71CF819356FE1E35"
+    },
+    {
+      "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/Hideout Launcher.exe",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/Hideout%20Launcher.exe",
+      "size": 36352,
+      "sha256": "B63AB0B08D624EED4E9A27F7C7B9C8AD0C229DD62EB3488DD0CD73ECDB0B12A3"
+    },
+    {
+      "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/clean-frida.config",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/clean-frida.config",
+      "size": 88,
+      "sha256": "D8DD75D9FB28D2C204170CB03733311878DE3F74B1D1492365E347412DD21EAC"
+    },
+    {
+      "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/block_freetp_browser.js",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/block_freetp_browser.js",
+      "size": 7495,
+      "sha256": "5B3233D8417F33F748951DC4298066F01715CB4E1EF4611FD5B4F04BDE4BE3B2"
+    },
+    {
+      "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/DreadHunger-Win64-Shipping.dh12patch",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/DreadHunger-Win64-Shipping.dh12patch",
+      "size": 4485,
+      "sha256": "936CA68EC9F5ABCDC70E3AF0A804B65DE4267CC8B7084F115D4ADD00448E602F"
     },
     {
       "path": "DreadHunger/Binaries/Win64/Patches/scoreboard_player_faces.js",
