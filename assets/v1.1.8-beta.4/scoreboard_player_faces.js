@@ -10,15 +10,50 @@
     var pregameAvatarInit = base.add(0xFCC3A0);
     var populateScoreboard = base.add(0xFC6550);
     var setScoreboardItemData = base.add(0xFE8950);
+    var lobbyAvatarUpdate = base.add(0x1031060);
+    var reportCardSelectionChanged = base.add(0xFFE1D0);
+    var setBrushAddress = base.add(0x2457F10);
+
     var setBrushResourceObject = new NativeFunction(
-        base.add(0x2457F10),
+        setBrushAddress,
+        'void',
+        ['pointer', 'pointer']
+    );
+    var getWeakObject = new NativeFunction(
+        base.add(0x13E6CF0),
+        'pointer',
+        ['pointer']
+    );
+    var getPlainNameString = new NativeFunction(
+        base.add(0x11D7830),
+        'void',
+        ['pointer', 'pointer']
+    );
+    var textFromString = new NativeFunction(
+        base.add(0x110DD90),
+        'pointer',
+        ['pointer', 'pointer']
+    );
+    var setText = new NativeFunction(
+        base.add(0xFB3C20),
         'void',
         ['pointer', 'pointer']
     );
 
-    var avatarByPlayerName = Object.create(null);
-    var avatarOrder = [];
+    var roleNames = {
+        PR_Cannibal: 'Полугуль',
+        PR_Explorer: 'Исследователь',
+        PR_OldSailor: 'Старый моряк',
+        PR_Witch: 'Ведьма'
+    };
+    var profileByPlayerName = Object.create(null);
+    var profileOrder = [];
+    var scoreboardProfiles = [];
+    var itemProfiles = Object.create(null);
+    var captureByThread = Object.create(null);
+    var retainedNativeMemory = [];
     var scoreboardIndex = 0;
+    var lastSelectedProfile = null;
 
     function readFString(address) {
         try {
@@ -33,95 +68,283 @@
         }
     }
 
-    function rememberAvatar(playerName, icon) {
-        if (playerName.length === 0 || icon.isNull()) {
-            return;
-        }
-
-        if (avatarByPlayerName[playerName] === undefined) {
-            avatarOrder.push({ name: playerName, icon: icon });
-        } else {
-            for (var index = 0; index < avatarOrder.length; index++) {
-                if (avatarOrder[index].name === playerName) {
-                    avatarOrder[index].icon = icon;
-                    break;
-                }
-            }
-        }
-        avatarByPlayerName[playerName] = icon;
+    function makeOutputFString(capacity) {
+        var value = Memory.alloc(16 + capacity * 2);
+        value.writePointer(value.add(16));
+        value.add(8).writeU32(0);
+        value.add(12).writeU32(capacity);
+        retainedNativeMemory.push(value);
+        return value;
     }
 
-    // The pregame screen already receives the correct face portrait for every
-    // player. Keep that texture together with the player name for the results.
+    function getObjectName(object) {
+        try {
+            if (object.isNull()) {
+                return '';
+            }
+            var value = makeOutputFString(128);
+            getPlainNameString(object.add(0x18), value);
+            return readFString(value);
+        } catch (_) {
+            return '';
+        }
+    }
+
+    function roleLabelFromData(roleData) {
+        var objectName = getObjectName(roleData);
+        var keys = Object.keys(roleNames);
+        for (var index = 0; index < keys.length; index++) {
+            if (objectName.indexOf(keys[index]) !== -1) {
+                return roleNames[keys[index]];
+            }
+        }
+        return '';
+    }
+
+    function makeText(value) {
+        var characters = Memory.alloc((value.length + 1) * 2);
+        characters.writeUtf16String(value);
+        var stringValue = Memory.alloc(16);
+        stringValue.writePointer(characters);
+        stringValue.add(8).writeS32(value.length + 1);
+        stringValue.add(12).writeS32(value.length + 1);
+        var textValue = Memory.alloc(24);
+        textValue.writeByteArray([
+            0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0
+        ]);
+        textFromString(textValue, stringValue);
+        retainedNativeMemory.push(characters, stringValue, textValue);
+        return textValue;
+    }
+
+    var textByRoleLabel = Object.create(null);
+    Object.keys(roleNames).forEach(function (key) {
+        var label = roleNames[key];
+        textByRoleLabel[label] = makeText(label);
+    });
+
+    function rememberProfile(playerName, icon, roleLabel) {
+        if (playerName.length === 0) {
+            return null;
+        }
+
+        var profile = profileByPlayerName[playerName];
+        if (profile === undefined) {
+            profile = {
+                name: playerName,
+                icon: null,
+                roleLabel: ''
+            };
+            profileByPlayerName[playerName] = profile;
+            profileOrder.push(profile);
+        }
+        if (icon !== null && icon !== undefined && !icon.isNull()) {
+            profile.icon = icon;
+        }
+        if (roleLabel !== undefined && roleLabel.length !== 0) {
+            profile.roleLabel = roleLabel;
+        }
+        return profile;
+    }
+
+    function setImage(view, icon) {
+        if (view.isNull() || icon === null || icon === undefined || icon.isNull()) {
+            return;
+        }
+        var playerImage = view.add(0x2C8).readPointer();
+        if (!playerImage.isNull()) {
+            setBrushResourceObject(playerImage, icon);
+        }
+    }
+
+    function setRoleText(textBlock, roleLabel) {
+        if (textBlock.isNull() || roleLabel.length === 0) {
+            return;
+        }
+        var textValue = textByRoleLabel[roleLabel];
+        if (textValue !== undefined) {
+            setText(textBlock, textValue);
+        }
+    }
+
+    function applyListItem(item, profile) {
+        if (item.isNull() || profile === null || profile === undefined) {
+            return;
+        }
+        if (profile.icon !== null) {
+            item.add(0x290).writePointer(profile.icon);
+            setImage(item.add(0x278).readPointer(), profile.icon);
+        }
+        if (profile.roleLabel.length !== 0) {
+            var tooltip = item.add(0x2A0).readPointer();
+            if (!tooltip.isNull()) {
+                setRoleText(tooltip.add(0x260).readPointer(), profile.roleLabel);
+            }
+        }
+    }
+
+    function applyReportCard(widget, profile) {
+        if (widget.isNull() || profile === null || profile === undefined) {
+            return;
+        }
+        if (profile.roleLabel.length !== 0) {
+            setRoleText(widget.add(0x298).readPointer(), profile.roleLabel);
+        }
+        if (profile.icon !== null) {
+            var avatar = widget.add(0x278).readPointer();
+            if (!avatar.isNull()) {
+                setImage(avatar.add(0x260).readPointer(), profile.icon);
+            }
+        }
+    }
+
+    // Keep the original pregame capture as a fallback for unusual lobby flows.
     Interceptor.attach(pregameAvatarInit, {
         onEnter: function (args) {
             try {
                 var data = args[1];
-                if (data.isNull()) {
+                if (!data.isNull()) {
+                    rememberProfile(
+                        readFString(data),
+                        data.add(0x10).readPointer(),
+                        ''
+                    );
+                }
+            } catch (_) {}
+        }
+    });
+
+    // The lobby slot is the authoritative source for both the selected custom
+    // role and its exact face portrait.  Capture the UImage resource while the
+    // native update is in progress and bind it to PlayerState.PlayerName.
+    Interceptor.attach(lobbyAvatarUpdate, {
+        onEnter: function (args) {
+            var threadId = Process.getCurrentThreadId();
+            this.threadId = threadId;
+            captureByThread[threadId] = null;
+            try {
+                var widget = args[0];
+                var playerState = getWeakObject(widget.add(0x318));
+                if (playerState.isNull()) {
                     return;
                 }
-                rememberAvatar(readFString(data), data.add(0x10).readPointer());
+                var selectedRole = playerState.add(0x590).readPointer();
+                captureByThread[threadId] = {
+                    playerName: readFString(playerState.add(0x300)),
+                    roleLabel: roleLabelFromData(selectedRole),
+                    targetImage: widget.add(0x2C0).readPointer(),
+                    icon: null
+                };
             } catch (_) {
-                // Leave the original UI untouched if the game data is incomplete.
+                captureByThread[threadId] = null;
+            }
+        },
+        onLeave: function () {
+            var capture = captureByThread[this.threadId];
+            delete captureByThread[this.threadId];
+            if (capture !== null && capture !== undefined) {
+                rememberProfile(
+                    capture.playerName,
+                    capture.icon,
+                    capture.roleLabel
+                );
             }
         }
     });
 
-    // Each scoreboard refresh reuses its item widgets, so restart the ordered
-    // fallback. The primary match remains the exact player name.
+    Interceptor.attach(setBrushAddress, {
+        onEnter: function (args) {
+            try {
+                var capture = captureByThread[Process.getCurrentThreadId()];
+                if (
+                    capture !== null &&
+                    capture !== undefined &&
+                    args[0].equals(capture.targetImage) &&
+                    !args[1].isNull()
+                ) {
+                    capture.icon = args[1];
+                }
+            } catch (_) {}
+        }
+    });
+
     Interceptor.attach(populateScoreboard, {
         onEnter: function () {
             scoreboardIndex = 0;
+            scoreboardProfiles = [];
+            itemProfiles = Object.create(null);
         }
     });
 
     Interceptor.attach(setScoreboardItemData, {
         onEnter: function (args) {
             this.item = args[0];
-            this.icon = null;
-
+            this.profile = null;
             try {
                 var record = args[1];
                 if (this.item.isNull() || record.isNull()) {
                     return;
                 }
-
                 var playerName = readFString(record.add(0x30));
-                var icon = avatarByPlayerName[playerName];
-                if (icon === undefined && scoreboardIndex < avatarOrder.length) {
-                    icon = avatarOrder[scoreboardIndex].icon;
+                var profile = profileByPlayerName[playerName];
+                if (profile === undefined && scoreboardIndex < profileOrder.length) {
+                    profile = profileOrder[scoreboardIndex];
                 }
+                scoreboardProfiles[scoreboardIndex] = profile || null;
                 scoreboardIndex++;
-
-                if (icon !== undefined && !icon.isNull()) {
-                    this.icon = icon;
+                if (profile !== undefined) {
+                    this.profile = profile;
+                    itemProfiles[this.item.toString()] = profile;
+                    if (lastSelectedProfile === null) {
+                        lastSelectedProfile = profile;
+                    }
                 }
             } catch (_) {
-                this.icon = null;
+                this.profile = null;
             }
         },
         onLeave: function () {
-            if (this.icon === null) {
-                return;
-            }
-
             try {
-                var view = this.item.add(0x278).readPointer();
-                if (view.isNull()) {
-                    return;
-                }
-                var playerImage = view.add(0x2C8).readPointer();
-                if (playerImage.isNull()) {
-                    return;
-                }
+                applyListItem(this.item, this.profile);
+            } catch (_) {}
+        }
+    });
 
-                // Avatar and border are independent fields. Only replace the
-                // picture; the explorer/thrall blue/red frame stays native.
-                this.item.add(0x290).writePointer(this.icon);
-                setBrushResourceObject(playerImage, this.icon);
-            } catch (_) {
-                // A failed cosmetic substitution must never break the scoreboard.
+    function firstSelectedIndex(selection) {
+        try {
+            if (selection.isNull() || selection.add(8).readS32() <= 0) {
+                return -1;
             }
+            var elements = selection.readPointer();
+            if (elements.isNull()) {
+                return -1;
+            }
+            return elements.readS32();
+        } catch (_) {
+            return -1;
+        }
+    }
+
+    // The native report card cannot distinguish the four mod roles because all
+    // of them use PTR_UNKNOWN.  Re-apply the captured profile after its native
+    // refresh, leaving the native red/blue team frame untouched.
+    Interceptor.attach(reportCardSelectionChanged, {
+        onEnter: function (args) {
+            this.widget = args[0];
+            var index = firstSelectedIndex(args[1]);
+            this.profile = index >= 0 ? scoreboardProfiles[index] : null;
+            if (this.profile === null || this.profile === undefined) {
+                this.profile = lastSelectedProfile;
+            } else {
+                lastSelectedProfile = this.profile;
+            }
+        },
+        onLeave: function () {
+            try {
+                applyReportCard(this.widget, this.profile);
+            } catch (_) {}
         }
     });
 })();

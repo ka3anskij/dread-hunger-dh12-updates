@@ -44,8 +44,8 @@
     {
       "path": "DreadHunger/Binaries/Win64/Patches/scoreboard_player_faces.js",
       "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/scoreboard_player_faces.js",
-      "size": 4100,
-      "sha256": "169B20CEF98C5034CFD4D2AA461F965F9551127E8C538A3D35B1457DE32EC877"
+      "size": 11549,
+      "sha256": "81FC4CDE4BE41EC8B942364E4ED5B5C4154FE7DFC546643AAFFC0F16DE1912AE"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.pak",
@@ -62,8 +62,8 @@
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_Hideout_999_P.pak",
       "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_Hideout_999_P.pak",
-      "size": 7426117,
-      "sha256": "7CAB14D407BECDBE5B44FCBB8378967196E054FBFF1484DEE5983345E4E662F1"
+      "size": 7431207,
+      "sha256": "2FA65D7714CA9E4EE8594DCB5DD9617BF3FD88EFB456841AA9E040CB37555127"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_Hideout_999_P.sig",
