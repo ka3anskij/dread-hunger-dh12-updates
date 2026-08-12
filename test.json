@@ -1,73 +1,73 @@
 {
   "formatVersion": 1,
   "channel": "test",
-  "version": "1.1.8-beta.4",
+  "version": "1.2.0",
   "minimumLauncherVersion": "1.1.1",
   "launchExe": "DreadHunger.exe",
   "files": [
     {
       "path": "DreadHunger/Binaries/Win64/Patches/block_freetp_browser.js",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/block_freetp_browser.js",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/block_freetp_browser.js",
       "size": 7495,
       "sha256": "5B3233D8417F33F748951DC4298066F01715CB4E1EF4611FD5B4F04BDE4BE3B2"
     },
     {
       "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/HideoutCleanUpdate.exe",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/HideoutCleanUpdate.exe",
-      "size": 18944,
-      "sha256": "668D012153C712A42DE410EC0E2F1B7BB4228ACD1EB64CDA71CF819356FE1E35"
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/clean-root-update/HideoutCleanUpdate.exe",
+      "size": 22528,
+      "sha256": "F2FBC90F71D1624F1E42A6AC679A924A226DCDBD5C38A675868BCDC58D4E1009"
     },
     {
       "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/Hideout Launcher.exe",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/Hideout%20Launcher.exe",
-      "size": 36352,
-      "sha256": "B63AB0B08D624EED4E9A27F7C7B9C8AD0C229DD62EB3488DD0CD73ECDB0B12A3"
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/clean-root-update/Hideout%20Launcher.exe",
+      "size": 173568,
+      "sha256": "C9798BB40271354B880BED3E929D1FEBD88A88A36085650D8C2FF6079415DB0E"
     },
     {
       "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/clean-frida.config",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/clean-frida.config",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/clean-root-update/clean-frida.config",
       "size": 88,
       "sha256": "D8DD75D9FB28D2C204170CB03733311878DE3F74B1D1492365E347412DD21EAC"
     },
     {
       "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/block_freetp_browser.js",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/block_freetp_browser.js",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/clean-root-update/block_freetp_browser.js",
       "size": 7495,
       "sha256": "5B3233D8417F33F748951DC4298066F01715CB4E1EF4611FD5B4F04BDE4BE3B2"
     },
     {
       "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/DreadHunger-Win64-Shipping.dh12patch",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/clean-root-update/DreadHunger-Win64-Shipping.dh12patch",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/clean-root-update/DreadHunger-Win64-Shipping.dh12patch",
       "size": 4485,
       "sha256": "936CA68EC9F5ABCDC70E3AF0A804B65DE4267CC8B7084F115D4ADD00448E602F"
     },
     {
       "path": "DreadHunger/Binaries/Win64/Patches/scoreboard_player_faces.js",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/scoreboard_player_faces.js",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/scoreboard_player_faces.js",
       "size": 11478,
       "sha256": "12A4B1C24361582FBB23DF16EA87AF10B9AA5684060484D4C19A9EF71EC80A8F"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.pak",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_TotemMod_RU_p.pak",
-      "size": 49304,
-      "sha256": "B988D7D0170C331B5101C9F5E34981B8CD38F8656171A365587337865C3B4FBA"
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/ZZ_TotemMod_RU_p.pak",
+      "size": 49298,
+      "sha256": "BEADC1343B1BACA345C38C1D5775C6ADFE576BA7A78E35125FEBC8D5E7DDF1B8"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.sig",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_TotemMod_RU_p.sig",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/ZZ_TotemMod_RU_p.sig",
       "size": 1021940,
       "sha256": "27143AFD8E72B2BF4AD0D14D892F6612B40D3F61B806092106CBB5906935E7BF"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_Hideout_999_P.pak",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_Hideout_999_P.pak",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/ZZ_Hideout_999_P.pak",
       "size": 7431207,
       "sha256": "2FA65D7714CA9E4EE8594DCB5DD9617BF3FD88EFB456841AA9E040CB37555127"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_Hideout_999_P.sig",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/ZZ_Hideout_999_P.sig",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/ZZ_Hideout_999_P.sig",
       "size": 1021940,
       "sha256": "27143AFD8E72B2BF4AD0D14D892F6612B40D3F61B806092106CBB5906935E7BF"
     }
