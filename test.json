@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "channel": "test",
-  "version": "1.2.1",
+  "version": "1.2.0",
   "minimumLauncherVersion": "1.1.1",
   "launchExe": "DreadHunger.exe",
   "files": [
@@ -13,7 +13,7 @@
     },
     {
       "path": "DreadHunger/Binaries/Win64/Patches/CleanRootUpdate/HideoutCleanUpdate.exe",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.1/clean-root-update/HideoutCleanUpdate.exe",
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/hotfixes/storage-cleanup/HideoutCleanUpdate.exe",
       "size": 28672,
       "sha256": "AC4FCBE57B7A30A03848FEF756F71C08E2FA900DC9AF62607C6A6BDCEEF045AA"
     },
