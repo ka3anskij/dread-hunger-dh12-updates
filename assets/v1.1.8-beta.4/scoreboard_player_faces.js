@@ -39,6 +39,11 @@
         'void',
         ['pointer', 'pointer']
     );
+    var getRoleIcon = new NativeFunction(
+        base.add(0xFC90C0),
+        'pointer',
+        ['pointer']
+    );
 
     var roleNames = {
         PR_Cannibal: 'Полугуль',
@@ -47,13 +52,10 @@
         PR_Witch: 'Ведьма'
     };
     var profileByPlayerName = Object.create(null);
-    var profileOrder = [];
     var scoreboardProfiles = [];
-    var itemProfiles = Object.create(null);
     var captureByThread = Object.create(null);
     var retainedNativeMemory = [];
     var scoreboardIndex = 0;
-    var lastSelectedProfile = null;
 
     function readFString(address) {
         try {
@@ -101,6 +103,14 @@
         return '';
     }
 
+    function playerNameKey(playerName) {
+        return playerName
+            .replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g, '')
+            .replace(/\u00A0/g, ' ')
+            .trim()
+            .toLowerCase();
+    }
+
     function makeText(value) {
         var characters = Memory.alloc((value.length + 1) * 2);
         characters.writeUtf16String(value);
@@ -126,19 +136,19 @@
     });
 
     function rememberProfile(playerName, icon, roleLabel) {
-        if (playerName.length === 0) {
+        var key = playerNameKey(playerName);
+        if (key.length === 0) {
             return null;
         }
 
-        var profile = profileByPlayerName[playerName];
+        var profile = profileByPlayerName[key];
         if (profile === undefined) {
             profile = {
                 name: playerName,
                 icon: null,
                 roleLabel: ''
             };
-            profileByPlayerName[playerName] = profile;
-            profileOrder.push(profile);
+            profileByPlayerName[key] = profile;
         }
         if (icon !== null && icon !== undefined && !icon.isNull()) {
             profile.icon = icon;
@@ -217,8 +227,9 @@
     });
 
     // The lobby slot is the authoritative source for both the selected custom
-    // role and its exact face portrait.  Capture the UImage resource while the
-    // native update is in progress and bind it to PlayerState.PlayerName.
+    // role and its exact face portrait.  The role passed in args[1] is newer
+    // than PlayerState.SelectedRole while a replicated slot is refreshing, so
+    // use it first and keep SelectedRole only as a defensive fallback.
     Interceptor.attach(lobbyAvatarUpdate, {
         onEnter: function (args) {
             var threadId = Process.getCurrentThreadId();
@@ -230,12 +241,18 @@
                 if (playerState.isNull()) {
                     return;
                 }
-                var selectedRole = playerState.add(0x590).readPointer();
+                var selectedRole = args[1];
+                if (selectedRole.isNull()) {
+                    selectedRole = playerState.add(0x590).readPointer();
+                }
+                var roleIcon = selectedRole.isNull()
+                    ? null
+                    : getRoleIcon(selectedRole);
                 captureByThread[threadId] = {
                     playerName: readFString(playerState.add(0x300)),
                     roleLabel: roleLabelFromData(selectedRole),
                     targetImage: widget.add(0x2C0).readPointer(),
-                    icon: null
+                    icon: roleIcon
                 };
             } catch (_) {
                 captureByThread[threadId] = null;
@@ -274,7 +291,6 @@
         onEnter: function () {
             scoreboardIndex = 0;
             scoreboardProfiles = [];
-            itemProfiles = Object.create(null);
         }
     });
 
@@ -288,18 +304,11 @@
                     return;
                 }
                 var playerName = readFString(record.add(0x30));
-                var profile = profileByPlayerName[playerName];
-                if (profile === undefined && scoreboardIndex < profileOrder.length) {
-                    profile = profileOrder[scoreboardIndex];
-                }
+                var profile = profileByPlayerName[playerNameKey(playerName)];
                 scoreboardProfiles[scoreboardIndex] = profile || null;
                 scoreboardIndex++;
                 if (profile !== undefined) {
                     this.profile = profile;
-                    itemProfiles[this.item.toString()] = profile;
-                    if (lastSelectedProfile === null) {
-                        lastSelectedProfile = profile;
-                    }
                 }
             } catch (_) {
                 this.profile = null;
@@ -335,11 +344,6 @@
             this.widget = args[0];
             var index = firstSelectedIndex(args[1]);
             this.profile = index >= 0 ? scoreboardProfiles[index] : null;
-            if (this.profile === null || this.profile === undefined) {
-                this.profile = lastSelectedProfile;
-            } else {
-                lastSelectedProfile = this.profile;
-            }
         },
         onLeave: function () {
             try {

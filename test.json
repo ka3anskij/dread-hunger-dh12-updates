@@ -44,8 +44,8 @@
     {
       "path": "DreadHunger/Binaries/Win64/Patches/scoreboard_player_faces.js",
       "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.1.8-beta.4/scoreboard_player_faces.js",
-      "size": 11549,
-      "sha256": "81FC4CDE4BE41EC8B942364E4ED5B5C4154FE7DFC546643AAFFC0F16DE1912AE"
+      "size": 11478,
+      "sha256": "12A4B1C24361582FBB23DF16EA87AF10B9AA5684060484D4C19A9EF71EC80A8F"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.pak",
