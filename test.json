@@ -43,9 +43,9 @@
     },
     {
       "path": "DreadHunger/Binaries/Win64/Patches/scoreboard_player_faces.js",
-      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/hotfixes/result-cards-2026-08-15-v6/scoreboard_player_faces.js",
-      "size": 20769,
-      "sha256": "7F8EB9CA424F4E8A8F44E39BE9628EE14F7D53B78CE4E2F2BCE550225F97B246"
+      "url": "https://raw.githubusercontent.com/ka3anskij/dread-hunger-dh12-updates/main/assets/v1.2.0/hotfixes/result-cards-2026-08-15-v7/scoreboard_player_faces.js",
+      "size": 25169,
+      "sha256": "D039F50FAE2C2C134A47F00679383DE59978F1A65E269DDDBE32B20AB7814198"
     },
     {
       "path": "DreadHunger/Content/Paks/cuimods/ZZ_TotemMod_RU_p.pak",
